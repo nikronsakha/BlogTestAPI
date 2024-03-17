@@ -6,9 +6,23 @@
 Прежде чем начать использовать API, убедитесь, что у вас установлен Docker. Для запуска проекта выполните следующие команды:
 
 ```bash
-docker-compose up 
-php artisan migrate --seed
+composer install
 ```
+
+```bash
+docker compose up -d
+```
+
+```bash
+docker exec -it app_post php artisan migrate
+```
+
+```bash
+docker exec -it app_post php artisan db:seed
+```
+
+
+
 
 
 
