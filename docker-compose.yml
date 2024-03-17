@@ -8,21 +8,25 @@ services:
             - '.:/application'
             - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         ports:
-            - '64000:80'
-
+            - '8080:80'
 
 
     postgres:
+        container_name: db.post
         image: 'postgres:15-alpine'
         working_dir: /application
         volumes:
             - '.:/application'
+        networks:
+            default:
+                aliases:
+                    - postgres.dev
         environment:
             - POSTGRES_USER=admin
             - POSTGRES_PASSWORD=admin1234
             - POSTGRES_DB=blog
         ports:
-            - '64004:5432'
+            - '5432:5432'
 
     php-fpm:
         build: phpdocker/php-fpm
