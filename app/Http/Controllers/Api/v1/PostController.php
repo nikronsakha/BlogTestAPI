@@ -8,6 +8,7 @@ use App\Http\Requests\Api\v1\UpdateRequest;
 use App\Http\Resources\v1\PostResource;
 use App\Models\Post;
 use App\Service\Api\v1\ApiService;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -43,5 +44,6 @@ class PostController extends Controller
     public function delete(string $post)
     {
         Post::destroy($post);
+        return response()->json(['message' => 'Пост успешно удален'], Response::HTTP_NO_CONTENT);
     }
 }
