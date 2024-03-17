@@ -33,10 +33,10 @@ class PostController extends Controller
     public function update(UpdateRequest $request ,ApiService $service, $post)
     {
 
-        $Post = Post::findOrFail($post);
-        $request->validated();
-
-        return $service->update($request, $Post, $post );
+        $PostObject = Post::findOrFail($post);
+        $ValidatedRequest=$request->validated();
+        $apiServiceResult = $service->update($ValidatedRequest, $PostObject, $post);
+        return $apiServiceResult;
     }
 
 

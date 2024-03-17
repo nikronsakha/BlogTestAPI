@@ -24,16 +24,15 @@ class ApiService
         }
     }
 
-    public function update($request ,$post, $Post)
+    public function update($ValidatedRequest ,$PostObject, $post)
     {
         try {
             DB::beginTransaction();
 
+            $PostObject->title = $ValidatedRequest['title'];
+            $PostObject->content = $ValidatedRequest['content'];
 
-            $Post->name = $request['title'];
-            $Post->phone = $request['content'];
-
-            $Post->save();
+            $PostObject->save();
 
             DB::commit();
 

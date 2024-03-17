@@ -2,6 +2,7 @@
 version: '3.1'
 services:
     webserver:
+        container_name: nginx_post
         image: 'nginx:alpine'
         working_dir: /application
         volumes:
@@ -12,7 +13,7 @@ services:
 
 
     postgres:
-        container_name: db.post
+        container_name: db_post
         image: 'postgres:15-alpine'
         working_dir: /application
         volumes:
@@ -29,6 +30,7 @@ services:
             - '5432:5432'
 
     php-fpm:
+        container_name: app_post
         build: phpdocker/php-fpm
         working_dir: /application
         volumes:
