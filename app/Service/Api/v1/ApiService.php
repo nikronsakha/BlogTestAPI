@@ -17,7 +17,10 @@ class ApiService
 
             DB::commit();
 
-            return new PostResource($create);
+            return response()->json([
+            'message' => 'Новый пост создан.',
+            'data' => $create,
+            ], 201);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['message' => 'Ошибка при создании поста'], 500);
